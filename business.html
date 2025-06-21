@@ -1,8 +1,121 @@
-<!-- HTML file -->
 <!DOCTYPE html>
 <html>
-<head><title>Quorsa</title></head>
+<head>
+  <title>Quorsa Business Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="business.css">
+</head>
 <body>
-<!-- Content here -->
+  <div class="business-container">
+    <header class="business-header">
+      <div class="header-content">
+        <h1>🏢 Quorsa Business</h1>
+        <div class="header-actions">
+          <span id="businessName">Business Dashboard</span>
+          <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="dashboard-grid">
+      <!-- Analytics Cards -->
+      <div class="analytics-section">
+        <h3>Analytics Overview</h3>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h4>Today's Revenue</h4>
+            <p class="stat-value">₹<span id="todayRevenue">0</span></p>
+          </div>
+          <div class="stat-card">
+            <h4>Total Transactions</h4>
+            <p class="stat-value"><span id="totalTransactions">0</span></p>
+          </div>
+          <div class="stat-card">
+            <h4>Success Rate</h4>
+            <p class="stat-value"><span id="successRate">100</span>%</p>
+          </div>
+          <div class="stat-card">
+            <h4>Active Users</h4>
+            <p class="stat-value"><span id="activeUsers">0</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Gateway -->
+      <div class="payment-section">
+        <h3>Payment Gateway</h3>
+        <div class="gateway-actions">
+          <button onclick="showCreatePaymentLink()">Create Payment Link</button>
+          <button onclick="showQRGenerator()">Generate QR Code</button>
+          <button onclick="showAPIKeys()">API Keys</button>
+        </div>
+      </div>
+
+      <!-- Recent Transactions -->
+      <div class="transactions-section">
+        <h3>Recent Transactions</h3>
+        <div class="transaction-table" id="businessTransactions">
+          <!-- Business transactions will be populated here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Create Payment Link Modal -->
+    <div class="modal" id="paymentLinkModal" style="display: none;">
+      <div class="modal-content">
+        <h3>Create Payment Link</h3>
+        <input type="number" id="linkAmount" placeholder="Amount">
+        <input type="text" id="linkDescription" placeholder="Description">
+        <input type="email" id="linkCustomerEmail" placeholder="Customer Email">
+        <div class="button-group">
+          <button onclick="createPaymentLink()">Create Link</button>
+          <button onclick="closeModal('paymentLinkModal')">Cancel</button>
+        </div>
+        <div id="generatedLink" style="display: none;">
+          <p>Payment Link:</p>
+          <input type="text" id="paymentLinkResult" readonly>
+          <button onclick="copyLink()">Copy Link</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- QR Generator Modal -->
+    <div class="modal" id="qrGeneratorModal" style="display: none;">
+      <div class="modal-content">
+        <h3>Generate QR Code</h3>
+        <input type="number" id="qrAmount" placeholder="Amount (optional)">
+        <input type="text" id="qrDescription" placeholder="Description">
+        <button onclick="generateBusinessQR()">Generate QR</button>
+        <div id="businessQRCode" class="qr-display"></div>
+        <button onclick="closeModal('qrGeneratorModal')">Close</button>
+      </div>
+    </div>
+
+    <!-- API Keys Modal -->
+    <div class="modal" id="apiKeysModal" style="display: none;">
+      <div class="modal-content">
+        <h3>API Keys</h3>
+        <div class="api-section">
+          <label>Test API Key:</label>
+          <input type="text" id="testApiKey" readonly value="test_sk_1234567890">
+          <button onclick="copyApiKey('test')">Copy</button>
+        </div>
+        <div class="api-section">
+          <label>Live API Key:</label>
+          <input type="text" id="liveApiKey" readonly value="live_sk_0987654321">
+          <button onclick="copyApiKey('live')">Copy</button>
+        </div>
+        <div class="api-docs">
+          <h4>API Documentation</h4>
+          <p>Use these endpoints to integrate Quorsa payments:</p>
+          <code>POST /api/v1/payments/create</code>
+          <code>GET /api/v1/payments/{id}</code>
+        </div>
+        <button onclick="closeModal('apiKeysModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="business.js"></script>
 </body>
-</html>
+  </html>
