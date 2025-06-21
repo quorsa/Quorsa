@@ -1,8 +1,103 @@
-<!-- HTML file -->
 <!DOCTYPE html>
 <html>
-<head><title>Quorsa</title></head>
+<head>
+  <title>Quorsa - Decentralized Fintech Protocol</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
-<!-- Content here -->
+  <div class="landing-container">
+    <header>
+      <h1>Quorsa</h1>
+      <p>Decentralized Fintech Protocol for Cross-Border Transfers</p>
+      <p class="subtitle">Crypto & Blockchain Backed Solutions</p>
+    </header>
+
+    <div class="user-type-selection" id="userTypeSelection">
+      <h2>Choose Your Platform</h2>
+      <div class="platform-cards">
+        <div class="platform-card" onclick="selectUserType('individual')">
+          <div class="card-icon">Individual</div>
+          <h3>Individual</h3>
+          <p>Personal wallet with UPI-style interface</p>
+          <ul>
+            <li>GPay-like interface</li>
+            <li>Quick payments</li>
+            <li>UPI transfers</li>
+            <li>Transaction history</li>
+          </ul>
+        </div>
+
+        <div class="platform-card" onclick="selectUserType('business')">
+          <div class="card-icon">Business</div>
+          <h3>Business</h3>
+          <p>Enterprise payment solutions</p>
+          <ul>
+            <li>Payment gateway</li>
+            <li>Analytics dashboard</li>
+            <li>API integration</li>
+            <li>QR code generation</li>
+          </ul>
+        </div>
+
+        <div class="platform-card admin-card" onclick="selectUserType('admin')">
+          <div class="card-icon">Admin</div>
+          <h3>Admin Panel</h3>
+          <p>Full protocol control</p>
+          <ul>
+            <li>User management</li>
+            <li>Transaction monitoring</li>
+            <li>System analytics</li>
+            <li>Protocol settings</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Individual Login -->
+    <div class="auth-container" id="individualAuth" style="display: none;">
+      <h2>Individual Login</h2>
+      <div class="form-group">
+        <input type="email" id="individualEmail" placeholder="Enter your email">
+        <input type="password" id="individualPassword" placeholder="Enter your password">
+      </div>
+      <div class="button-group">
+        <button onclick="signup('individual')">Sign Up</button>
+        <button onclick="login('individual')">Login</button>
+        <button class="back-btn" onclick="goBack()">Back</button>
+      </div>
+    </div>
+
+    <!-- Business Login -->
+    <div class="auth-container" id="businessAuth" style="display: none;">
+      <h2>Business Login</h2>
+      <div class="form-group">
+        <input type="email" id="businessEmail" placeholder="Business email">
+        <input type="password" id="businessPassword" placeholder="Password">
+        <input type="text" id="businessName" placeholder="Business name (for signup)">
+      </div>
+      <div class="button-group">
+        <button onclick="signup('business')">Sign Up</button>
+        <button onclick="login('business')">Login</button>
+        <button class="back-btn" onclick="goBack()">Back</button>
+      </div>
+    </div>
+
+    <!-- Admin Login -->
+    <div class="auth-container" id="adminAuth" style="display: none;">
+      <h2>Admin Login</h2>
+      <div class="form-group">
+        <input type="email" id="adminEmail" placeholder="Admin email">
+        <input type="password" id="adminPassword" placeholder="Admin password">
+      </div>
+      <div class="button-group">
+        <button onclick="login('admin')">Login</button>
+        <button class="back-btn" onclick="goBack()">Back</button>
+      </div>
+      <p class="note">Default admin: admin@quorsa.com / admin123</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
 </body>
-</html>
+  </html>
