@@ -1,8 +1,93 @@
-<!-- HTML file -->
 <!DOCTYPE html>
 <html>
-<head><title>Quorsa</title></head>
+<head>
+  <title>Quorsa Individual Wallet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="individual.css">
+</head>
 <body>
-<!-- Content here -->
+  <div class="individual-container">
+    <header class="wallet-header">
+      <div class="header-top">
+        <h1>Quorsa</h1>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </div>
+      <div class="balance-card">
+        <p>Available Balance</p>
+        <h2><span id="balance">0</span></h2>
+        <div class="balance-actions">
+          <button onclick="showAddMoney()">Add Money</button>
+          <button onclick="showSendMoney()">Send Money</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="quick-actions">
+      <h3>Quick Actions</h3>
+      <div class="action-grid">
+        <div class="action-item" onclick="showSendMoney()">
+          <div class="action-icon"></div>
+          <span>Send Money</span>
+        </div>
+        <div class="action-item" onclick="showRequestMoney()">
+          <div class="action-icon"></div>
+          <span>Request</span>
+        </div>
+        <div class="action-item" onclick="showUPISection()">
+          <div class="action-icon"></div>
+          <span>UPI</span>
+        </div>
+        <div class="action-item" onclick="showQRCode()">
+          <div class="action-icon"></div>
+          <span>QR Code</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Send Money Modal -->
+    <div class="modal" id="sendMoneyModal" style="display: none;">
+      <div class="modal-content">
+        <h3>Send Money</h3>
+        <input type="text" id="sendTo" placeholder="Email or UPI ID">
+        <input type="number" id="sendAmount" placeholder="Amount">
+        <input type="text" id="sendNote" placeholder="Note (optional)">
+        <div class="button-group">
+          <button onclick="sendMoney()">Send</button>
+          <button onclick="closeModal('sendMoneyModal')">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPI Section -->
+    <div class="modal" id="upiModal" style="display: none;">
+      <div class="modal-content">
+        <h3>UPI Details</h3>
+        <p>Your UPI ID: <span id="upiId"></span></p>
+        <button onclick="copyUPIId()">Copy UPI ID</button>
+        <button onclick="closeModal('upiModal')">Close</button>
+      </div>
+    </div>
+
+    <!-- QR Code Section -->
+    <div class="modal" id="qrModal" style="display: none;">
+      <div class="modal-content">
+        <h3>Your QR Code</h3>
+        <div class="qr-code" id="personalQRCode">
+          <div class="qr-placeholder"></div>
+          <p>Your payment QR code</p>
+        </div>
+        <button onclick="closeModal('qrModal')">Close</button>
+      </div>
+    </div>
+
+    <div class="transaction-history">
+      <h3>Recent Transactions</h3>
+      <div class="transaction-list" id="transactionList">
+        <!-- Transactions will be populated here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="individual.js"></script>
 </body>
-</html>
+  </html>
